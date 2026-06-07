@@ -4,8 +4,7 @@ body {
   margin:0;
   font-family: Arial, sans-serif;
   display:flex;
-  flex-direction:column;
-  min-height: calc(100vh - 70px);
+  height: calc(100vh - 70px);
   overflow-x:hidden;
 }
 
