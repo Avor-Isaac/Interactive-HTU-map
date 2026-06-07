@@ -95,7 +95,8 @@ body {
 .app {
   display:flex;
   flex:1;
-  min-height:calc(100vh - 100px);
+  height:calc(100vh - 100px);
+  overflow:hidden;
 }
 
 .sidebar-left {
@@ -106,11 +107,14 @@ body {
     display:flex;
     flex-direction:column;
     height:100%;
+    overflow:hidden;
 }
 
 .legend {
     flex:1;
     overflow-y:auto;
+    overflow-x:hidden;
+    min-height:0;
     scrollbar-width:thin;
 }
 
