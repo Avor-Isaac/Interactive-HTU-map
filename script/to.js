@@ -495,3 +495,16 @@ wrapper.addEventListener("touchend", () => {
 function toggleSidebar() {
   document.querySelector('.sidebar-left').classList.toggle('hidden');
 }
+
+
+const sidebarLeft = document.querySelector(".sidebar-left");
+
+document.getElementById("openLocations")
+.addEventListener("click", () => {
+    sidebarLeft.classList.add("show");
+});
+
+document.getElementById("closeLocations")
+.addEventListener("click", () => {
+    sidebarLeft.classList.remove("show");
+});
