@@ -139,12 +139,11 @@ ol{
 }
 
 .main {
-  flex:1;
-  min-width:0;
-  height:100%;
-  overflow:hidden;
+    flex:1;
+    position:relative;
+    overflow:hidden;
+    min-width:0;
 }
-
 
 .map-wrapper {
   
@@ -166,7 +165,8 @@ ol{
        bottom:20px; 
        right:20px; 
        display:flex; 
-       flex-direction:column;     
+       flex-direction:column;
+       z-index: 999;
  }
 
 .zoom-controls button { 
@@ -363,4 +363,11 @@ button {
       order:2;
   }
 
+}
+
+@media (max-width:768px){
+    .zoom-controls {
+        bottom: 10px;
+        right: 10px;
+    }
 }
