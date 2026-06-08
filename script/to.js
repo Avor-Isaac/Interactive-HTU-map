@@ -467,23 +467,21 @@ function load360(imagePath) {
 
 // TOUCH PAN SUPPORT
 wrapper.addEventListener("touchstart", e => {
-  if (!isPanning) return;
-
-  const touch = e.touches[0];
+  if (e.touches.length !== 1) return;  // only single-finger pan
+  // REMOVE the "if (!isPanning) return;" check for touch
   isDragging = true;
-  startX = touch.clientX - x;
-  startY = touch.clientY - y;
+  startX = e.touches[0].clientX - x;
+  startY = e.touches[0].clientY - y;
 });
 
 wrapper.addEventListener("touchmove", e => {
-  if (!isDragging || !isPanning) return;
-
-  const touch = e.touches[0];
-  x = touch.clientX - startX;
-  y = touch.clientY - startY;
-
+  if (!isDragging || e.touches.length !== 1) return;
+  // REMOVE the "if (!isPanning)" check
+  x = e.touches[0].clientX - startX;
+  y = e.touches[0].clientY - startY;
   updateTransform();
-});
+  e.preventDefault();  // prevents page scroll while panning
+}, { passive: false });
 
 wrapper.addEventListener("touchend", () => {
   isDragging = false;
@@ -507,4 +505,33 @@ document.getElementById("openLocations")
 document.getElementById("closeLocations")
 .addEventListener("click", () => {
     sidebarLeft.classList.remove("show");
+});
+
+
+// PINCH ZOOM SUPPORT
+let lastDist = null;
+
+wrapper.addEventListener("touchstart", e => {
+  if (e.touches.length === 2) lastDist = null; // reset for pinch
+});
+
+wrapper.addEventListener("touchmove", e => {
+  if (e.touches.length === 2) {
+    e.preventDefault();
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    const dist = Math.hypot(dx, dy);
+
+    if (lastDist) {
+      const factor = dist / lastDist;
+      const mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      const my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      zoom(factor, mx, my);
+    }
+    lastDist = dist;
+  }
+}, { passive: false });
+
+wrapper.addEventListener("touchend", e => {
+  if (e.touches.length < 2) lastDist = null;
 });
