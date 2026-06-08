@@ -1,12 +1,12 @@
 
 *{box-sizing:border-box}
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  display:flex;
-  flex-direction:column;
+body { 
+  margin:0; 
+  font-family: Arial, sans-serif; 
+  display:flex; 
+  flex-direction:column; 
   height:100vh;
-  overflow:auto;
+  /* FIXED: removed overflow:hidden so page can scroll on mobile */
 }
 
 /* HEADER */
@@ -20,98 +20,9 @@ body {
   padding:0 20px;
 }
 
-
-@media (max-width: 768px) {
-  body {
-    height: auto;
-    overflow-y: auto;
-  }
-
-  .header {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 8px 10px;
-    gap: 6px;
-  }
-
-  .nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-
-  .nav a {
-    margin-left: 0;
-    font-size: 12px;
-    padding: 4px 8px;
-  }
-
-  .app {
-    flex-direction: column;
-    overflow-y: auto;
-    height: auto;
-  }
-
-  .sidebar-left {
-    width: 100%;
-    height: auto;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .legend {
-    overflow-y: visible;
-    flex: none;
-    height: auto;
-  }
-
-  .main {
-    height: 60vh;
-    min-height: 300px;
-  }
-
-  .sidebar-right {
-    width: 100%;
-    height: auto;
-    max-height: 350px;
-    overflow-y: auto;
-  }
-}
-
-  .nav a{
-      margin:5px 0;
-      text-align:center;
-  }
-
-  .app {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    height:auto;
-    overflow-y: auto;
-}
-
-  .sidebar-left,
-  .sidebar-right{
-      width:100%;
-      height:auto;
-  }
-
-  .main{
-      min-height:500px;
-      width:100%;
-  }
-
-  .map-wrapper{
-      width:100%;
-      height:100%;
-  }
-
-}
-
 .logo-left img {
-  height: 50px;   /* control size here */
-  width: auto;    /* keeps aspect ratio */
+  height: 50px;
+  width: auto;
   object-fit: contain;
   border-radius: 10px;
 }
@@ -131,149 +42,122 @@ body {
 }
 
 /* LAYOUT */
-.app {
-  display:flex;
-  flex:1;
-  overflow-y: auto;
-  min-height:0;
+.app { 
+  display:flex; 
+  flex:1; 
+  overflow:hidden;
 }
 
-.sidebar-left {
-  width: 250px;
-  height: auto;
-  max-height: none;
-  background: #07293f;
-  color: white;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  overflow: visible;
+.sidebar-left { 
+  width:250px; 
+  background:#07293f; 
+  color:white; 
+  padding:15px; 
+  display:flex; 
+  flex-direction:column;
 }
 
-.legend {
-    flex: none;
-    overflow-y: visible;
-    overflow-x: hidden;
-    height: 0;
-    scrollbar-width: thin;
+/* FIXED: search box was unstyled */
+#searchBox {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.legend { 
+  flex:1; 
+  overflow-y:auto; 
+  margin-top:10px; 
 }
 
 .sidebar-right { 
-       width:300px; 
-       background:#e2e2e2; 
-       padding:15px; 
-       font-family: montserrat, sans-serif;
-       font-weight: 400;
-       color: #0b3c5d;
-       
+  width:300px; 
+  background:#e2e2e2; 
+  padding:15px; 
+  font-family: montserrat, sans-serif;
+  font-weight: 400;
+  color: #0b3c5d;
 }
 
 h3{
-   font-family: montserrat, sans-serif;
-   font-weight: 600;
-}
-ol{
-   line-height: 20px;
-   font-family: montserrat, sans-serif;
-   font-weight: 200;
+  font-family: montserrat, sans-serif;
+  font-weight: 600;
 }
 
-.main {
-    flex:1;
-    position:relative;
-    overflow:hidden;
-    min-width:0;
+ol{
+  line-height: 20px;
+  font-family: montserrat, sans-serif;
+  font-weight: 200;
+}
+
+.main { 
+  flex:1; 
+  position:relative; 
+  overflow:hidden; 
 }
 
 .map-wrapper {
-  
-         width:100%;
-         height:100%; 
-         transform-origin: 0 0; 
-         transition: transform 0.4s ease; 
-         flex: 1;
-         position: relative;
-         overflow: hidden;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-  
+  width:100%;
+  height:100%; 
+  transform-origin: 0 0; 
+  transition: transform 0.4s ease; 
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .zoom-controls { 
-       position:absolute; 
-       bottom:20px; 
-       right:20px; 
-       display:flex; 
-       flex-direction:column;
-       z-index: 999;
- }
-
-.zoom-controls button { 
-       margin:5px; 
-       padding:10px; 
-       font-size:18px; 
-       background: #0b3c5d;
-       color: white;
-       border-radius: 10px;
- }
-
-
-
-.mobile-buttons{
-    display:none;
+  position:absolute; 
+  bottom:20px; 
+  right:20px; 
+  display:flex; 
+  flex-direction:column;     
 }
 
-@media (max-width:768px){
-
-    .mobile-buttons{
-        display:flex;
-        gap:10px;
-        position:fixed;
-        bottom:20px;
-        left:50%;
-        transform:translateX(-50%);
-        z-index:2000;
-    }
-
-    .mobile-buttons button{
-        background:#0b3c5d;
-        color:white;
-        border:none;
-        padding:12px 18px;
-        border-radius:30px;
-        cursor:pointer;
-    }
-
+.zoom-controls button { 
+  margin:5px; 
+  padding:10px; 
+  font-size:18px; 
+  background: #0b3c5d;
+  color: white;
+  border-radius: 10px;
 }
 
 .active-location polygon { 
-       stroke:yellow; 
-       stroke-width:3; 
-       filter:drop-shadow(0 0 6px yellow);
-    
-  }
+  stroke:yellow; 
+  stroke-width:3; 
+  filter:drop-shadow(0 0 6px yellow);
+}
 
 #tooltip { 
-       position:absolute; 
-       background:black; 
-       color:white; 
-       padding:5px 10px; 
-       font-size:14px; 
-       border-radius:4px; 
-       pointer-events:none; 
-       display:none;
-  }
+  position:absolute; 
+  background:black; 
+  color:white; 
+  padding:5px 10px; 
+  font-size:14px; 
+  border-radius:4px; 
+  pointer-events:none; 
+  display:none;
+}
 
 /* FOOTER */
-.footer { height:40px; 
-background:#0b3c5d; 
-color:#fff; display:flex;
-align-items:center; 
-justify-content:center; 
-font-size:12px; 
-font-family: montserrat, sans-serif;
-font-weight: 200;
+.footer { 
+  height:40px; 
+  background:#0b3c5d; 
+  color:#fff; 
+  display:flex;
+  align-items:center; 
+  justify-content:center; 
+  font-size:12px; 
+  font-family: montserrat, sans-serif;
+  font-weight: 200;
 }
 
 /* MODAL */
@@ -313,28 +197,28 @@ font-weight: 200;
 }
 
 #panBtn {
-    position: absolute;
-    bottom: 200px;
-    right: 20px;
-    padding: 10px;
-    background: #0b3c5d;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  position: absolute;
+  bottom: 200px;
+  right: 20px;
+  padding: 10px;
+  background: #0b3c5d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 #panBtn.active {
-    background: #176599;
+  background: #176599;
 }
 
 /* Cursor styles */
 .pan-active {
-    cursor: grab;
+  cursor: grab;
 }
 
 .pan-active:active {
-    cursor: grabbing;
+  cursor: grabbing;
 }
 
 #panorama {
@@ -344,196 +228,24 @@ font-weight: 200;
   overflow: hidden;
 }
 
-
-@media (max-width: 768px) {
-  .app {
-    flex-direction: column;
-    overflow-y: auto;  /* ADD THIS */
-  }
-
-  .sidebar-left {
-    width: 100%;
-    height: auto;        /* limit height so it doesn't eat the screen */
-    max-height: none;
-    overflow: visible;
-  }
-
-  .sidebar-right {
-    width: 100%;
-    height: auto;
-    max-height: 300px;    /* prevent it from being too tall */
-    overflow-y: auto;
-  }
-
-  .main {
-    height: 55vh;         /* give the map enough space */
-    min-height: 300px;
-  }
-}
-
-  
 button {
   padding: 10px 14px;
   font-size: 16px;
 }
 
 
-@media (max-width:768px){
-
-    .header{
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        height:auto;
-        padding:15px;
-    }
-
-    .logo-left{
-        margin-bottom:10px;
-    }
-
-    .logo-left img{
-        height:60px;
-    }
-
-    .nav{
-        width:100%;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .nav a{
-        margin:5px 0;
-        width:90%;
-        text-align:center;
-    }
-
-}
-
-
-
-#searchBox{
-    width:100%;
-    padding:12px;
-    margin-bottom:10px;
-}
-
-
-@media (max-width:768px){
-
-  .sidebar-left{
-      order:3;
-  }
-
-  .main{
-      order:1;
-  }
-
-  .sidebar-right{
-      order:2;
-  }
-
-}
-
-@media (max-width:768px){
-    .zoom-controls {
-        bottom: 10px;
-        right: 10px;
-    }
-}
-
-
-.mobile-panel{
-    position:fixed;
-    top:0;
-    left:-100%;
-    width:85%;
-    height:100%;
-    background:white;
-    z-index:3000;
-    transition:left .3s ease;
-    overflow-y:auto;
-    box-shadow:0 0 20px rgba(0,0,0,.3);
-}
-
-.mobile-panel.show{
-    left:0;
-}
-
-.close-panel{
-    float:right;
-    padding:15px;
-    cursor:pointer;
-    font-size:20px;
-}
-
-
-@media (max-width:768px){
-
-  .sidebar-left{
-      position:fixed;
-      top:0;
-      left:-100%;
-      width:85%;
-      height:100vh;
-      z-index:3000;
-      transition:left .3s ease;
-      overflow-y:auto;
-  }
-
-  .sidebar-left.show{
-      left:0;
-  }
-
-}
-
-
-.mobile-buttons{
-    display:none;
-}
-
-@media (max-width:768px){
-
-    .mobile-buttons{
-        display:block;
-        position:fixed;
-        bottom:20px;
-        left:20px;
-        z-index:4000;
-    }
-
-    .mobile-buttons button{
-        background:#0b3c5d;
-        color:white;
-        border:none;
-        border-radius:30px;
-        padding:12px 18px;
-    }
-}
-
-
-
-.drawer-close{
-    display:none;
-}
-
-@media (max-width:768px){
-
-    .drawer-close{
-        display:block;
-        background:none;
-        border:none;
-        color:white;
-        font-size:24px;
-        margin-bottom:10px;
-        cursor:pointer;
-    }
-
-}
-
-
+/* ==============================
+   MOBILE RESPONSIVE FIXES
+   ============================== */
 @media (max-width: 768px) {
+
+  /* FIXED: allow the page to scroll vertically on mobile */
+  body {
+    height: auto;
+    overflow-y: auto;
+  }
+
+  /* FIXED: header wraps on small screens so nav links don't overflow */
   .header {
     flex-wrap: wrap;
     height: auto;
@@ -552,15 +264,53 @@ button {
     font-size: 12px;
     padding: 4px 8px;
   }
-}
 
+  /* FIXED: stack layout vertically and allow scrolling */
+  .app {
+    flex-direction: column;
+    overflow-y: auto;
+    height: auto;
+  }
 
-#searchBox {
-  width: 100%;
-  padding: 8px;
-  border-radius: 5px;
-  border: none;
-  margin-bottom: 10px;
-  font-size: 14px;
-  box-sizing: border-box;
+  /* FIXED: sidebar-left full width, height grows naturally so legend is visible */
+  .sidebar-left {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* FIXED: legend was collapsing to 0 height because flex:1 needs a fixed parent.
+     Removed flex:1 and overflow clip so all items show */
+  .legend {
+    overflow-y: visible;
+    flex: none;
+    height: auto;
+  }
+
+  /* FIXED: map gets a proper dedicated height on mobile */
+  .main {
+    height: 60vh;
+    min-height: 300px;
+    width: 100%;
+  }
+
+  /* FIXED: right sidebar goes full width below the map */
+  .sidebar-right {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    overflow-y: auto;
+  }
+
+  /* FIXED: panorama viewer smaller on mobile to save space */
+  #panorama {
+    height: 200px;
+  }
+
+  /* FIXED: modal too wide for mobile */
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
 }
