@@ -440,8 +440,7 @@ homeBtn.onclick = () => {
   document.getElementById("locationTitle").innerText = "Select a location";
   locationDescription.innerText = "Description will appear here.";
 
-  videoSource.src = "";
-  locationVideo.load();
+  
 };
 
 aboutBtn.onclick = () => {
