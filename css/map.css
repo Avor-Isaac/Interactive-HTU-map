@@ -6,7 +6,7 @@ body {
   display:flex;
   flex-direction:column;
   height:100vh;
-  overflow:hidden;
+  overflow:auto;
 }
 
 /* HEADER */
@@ -21,24 +21,62 @@ body {
 }
 
 
-@media (max-width:768px){
-
-  body{
-      overflow-x:hidden;
+@media (max-width: 768px) {
+  body {
+    height: auto;
+    overflow-y: auto;
   }
 
-  .header{
-      flex-wrap:wrap;
-      height:auto;
-      padding:10px;
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 10px;
+    gap: 6px;
   }
 
-  .nav{
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      margin-top:10px;
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
   }
+
+  .nav a {
+    margin-left: 0;
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .app {
+    flex-direction: column;
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .sidebar-left {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .legend {
+    overflow-y: visible;
+    flex: none;
+    height: auto;
+  }
+
+  .main {
+    height: 60vh;
+    min-height: 300px;
+  }
+
+  .sidebar-right {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    overflow-y: auto;
+  }
+}
 
   .nav a{
       margin:5px 0;
@@ -48,8 +86,9 @@ body {
   .app {
     display: flex;
     flex: 1;
-    height: calc(100vh - 100px);
-    overflow: hidden;
+    flex-direction: column;
+    height:auto;
+    overflow-y: auto;
 }
 
   .sidebar-left,
@@ -95,27 +134,28 @@ body {
 .app {
   display:flex;
   flex:1;
-  overflow:hidden;
+  overflow-y: auto;
   min-height:0;
 }
 
 .sidebar-left {
-    width:250px;
-    background:#07293f;
-    color:white;
-    padding:15px;
-    display:flex;
-    flex-direction:column;
-    height:100%;
-    overflow:hidden;
+  width: 250px;
+  height: auto;
+  max-height: none;
+  background: #07293f;
+  color: white;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
 }
 
 .legend {
-    flex:1;
-    overflow-y:auto;
-    overflow-x:hidden;
-    min-height:0;
-    scrollbar-width:thin;
+    flex: none;
+    overflow-y: visible;
+    overflow-x: hidden;
+    height: 0;
+    scrollbar-width: thin;
 }
 
 .sidebar-right { 
@@ -313,8 +353,9 @@ font-weight: 200;
 
   .sidebar-left {
     width: 100%;
-    height: 180px;        /* limit height so it doesn't eat the screen */
-    overflow-y: auto;
+    height: auto;        /* limit height so it doesn't eat the screen */
+    max-height: none;
+    overflow: visible;
   }
 
   .sidebar-right {
@@ -511,4 +552,15 @@ button {
     font-size: 12px;
     padding: 4px 8px;
   }
+}
+
+
+#searchBox {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
 }
