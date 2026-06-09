@@ -5,11 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HTU Interactive Map</title>
 <link rel="stylesheet" href="css/map.css">
+<link rel="stylesheet" href="splash.css">
 <script src="script/pannellum.js"></script>
 <link rel="stylesheet" href="css/pannellum.css">
 </head>
 
 <body>
+
+  <div id="splashScreen">
+  <img src="images/htulogo.jpg" alt="HTU Logo" class="splash-logo">
+  <div class="splash-title">Ho Technical University</div>
+  <div class="splash-subtitle">Campus Interactive Map</div>
+  <div class="splash-divider"></div>
+  <div class="splash-tagline">Explore. Discover. Navigate.</div>
+  <div class="splash-loader">
+    <span></span><span></span><span></span>
+  </div>
+  <button class="splash-enter-btn">Enter Campus</button>
+</div>
 
 <!-- HEADER -->
 <div class="header">
@@ -3030,6 +3043,7 @@
 
 </main>
 
+<script src="splash.js"></script>
 <script src="script/to.js">
 </script>
 
